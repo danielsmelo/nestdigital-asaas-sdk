@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php"
+         backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         verbose="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="NestDigital Test Suite">
+            <directory suffix=".php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <logging>
+        <!-- comment the line below to disable the code coverage reporting (HTML) -->
+        <!--<log type="coverage-html" target="build/coverage" charset="UTF-8" yui="true" highlight="true"/>-->
+    </logging>
+</phpunit>

@@ -1,0 +1,36 @@
+{
+    "name": "nestdigital/asaas",
+    "description": "Asaas API",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nestdigital\\Asaas\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nestdigital\\Test\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Melo",
+            "email": "daniel.melo@nestdigital.com.br"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "require": {
+        "illuminate/config": "^8.0",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nestdigital\\Asaas\\ServiceProviders\\NestdigitalServiceProvider"
+            ]
+        }
+    }
+}

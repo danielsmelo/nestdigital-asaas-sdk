@@ -25,6 +25,11 @@ class Payment extends ApiAdapter
         return $this->get('payments?customer='.$customerId, $this->options);
     }
 
+    public function findBySubscriptionId(string $subscriptionId)
+    {
+        return $this->get('payments?subscription='.$subscriptionId, $this->options);
+    }
+
     public function update(string $paymentId, array $paymentData)
     {
         $this->options['body'] = json_encode($paymentData);

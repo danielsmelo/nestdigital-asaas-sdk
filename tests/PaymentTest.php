@@ -54,6 +54,15 @@ class PaymentTest extends TestCase
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
+    public function testFindPaymentsBySubscriptionId()
+    {
+        $result = $this->asaas
+            ->payment()
+            ->findBySubscriptionId('1');
+
+        $this->assertEquals($result->getStatusCode(), 200);
+    }
+
     public function testUpdatePayment()
     {
         $values = [];

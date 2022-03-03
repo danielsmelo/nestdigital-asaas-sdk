@@ -21,4 +21,3 @@ echo ${nextversion} > VERSION
 echo 'p' >> VERSION
 
 git add VERSION
-git tag ${nextversion}

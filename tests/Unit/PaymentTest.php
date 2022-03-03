@@ -1,13 +1,12 @@
 <?php
 
-namespace Nestdigital\Test;
+namespace Nestdigital\Test\Unit;
 
 use Nestdigital\Asaas\Facade\Asaas as FacadeAsaas;
+use Nestdigital\Test\TestCase;
 
 class PaymentTest extends TestCase
 {
-    private $asaas;
-
     public function testCreatePayment()
     {
         $result = FacadeAsaas::payment()->find('1');

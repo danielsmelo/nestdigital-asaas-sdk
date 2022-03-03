@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Nestdigital\\Asaas\\ServiceProviders\\NestdigitalServiceProvider"
+                "Nestdigital\\Asaas\\ServiceProviders\\ServiceProvider"
             ]
         }
     }

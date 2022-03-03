@@ -1,25 +1,16 @@
 <?php
 
-namespace Nestdigital\Test;
+namespace Nestdigital\Test\Unit;
 
 use Exception;
-use Nestdigital\Asaas\Asaas;
-use PHPUnit\Framework\TestCase;
+use Nestdigital\Asaas\Facade\Asaas;
+use Nestdigital\Test\TestCase;
 
 class FiscalInformationTest extends TestCase
 {
-    private $asaas;
-
-    public function setUp(): void
-    {
-        $this->asaas = new Asaas();
-    }
-
     public function testFiscalInformationMunicipalServices()
     {
-        $result = $this->asaas
-            ->fiscalInformation()
-            ->municipalServices();
+        $result = Asaas::fiscalInformation()->municipalServices();
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
@@ -30,9 +21,7 @@ class FiscalInformationTest extends TestCase
 
         $this->expectException(Exception::class);
 
-        $result = $this->asaas
-            ->fiscalInformation()
-            ->create($values);
+        $result = Asaas::fiscalInformation()->create($values);
     }
 
     public function testUpdateFiscalInformation()
@@ -41,17 +30,13 @@ class FiscalInformationTest extends TestCase
 
         $this->expectException(Exception::class);
 
-        $result = $this->asaas
-            ->fiscalInformation()
-            ->update($values);
+        $result = Asaas::fiscalInformation()->update($values);
     }
 
     public function testFindFiscalInformation()
     {
         $this->expectException(Exception::class);
 
-        $result = $this->asaas
-            ->fiscalInformation()
-            ->find();
+        $result = Asaas::fiscalInformation()->find();
     }
 }

@@ -1,26 +1,17 @@
 <?php
 
-namespace Nestdigital\Test;
+namespace Nestdigital\Test\Unit;
 
-use Nestdigital\Asaas\Asaas;
-use PHPUnit\Framework\TestCase;
+use Nestdigital\Asaas\Facade\Asaas;
+use Nestdigital\Test\TestCase;
 
 class PaymentLinkTest extends TestCase
 {
-    private $asaas;
-
-    public function setUp(): void
-    {
-        $this->asaas = new Asaas();
-    }
-
     public function testCreatePaymentLink()
     {
         $values = [];
 
-        $result = $this->asaas
-            ->paymentLink()
-            ->create($values);
+        $result = Asaas::paymentLink()->create($values);
 
         // $response = (array) json_decode($result->getBody(), true);
 
@@ -32,99 +23,77 @@ class PaymentLinkTest extends TestCase
     {
         $values = [];
 
-        $result = $this->asaas
-            ->paymentLink()
-            ->update('1', $values);
+        $result = Asaas::paymentLink()->update('1', $values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindSinglePaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->find('1');
+        $result = Asaas::paymentLink()->find('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindAllPaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->find();
+        $result = Asaas::paymentLink()->find();
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindActivePaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->findActive('1');
+        $result = Asaas::paymentLink()->findActive('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testRemovePaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->remove('1');
+        $result = Asaas::paymentLink()->remove('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testRestorePaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->restore('1');
+        $result = Asaas::paymentLink()->restore('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testSendImageOfPaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->image('1');
+        $result = Asaas::paymentLink()->image('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindSingleImageOfPaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->findImages('1', '2');
+        $result = Asaas::paymentLink()->findImages('1', '2');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindAllImagesOfPaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->findImages('1');
+        $result = Asaas::paymentLink()->findImages('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testRemoveImageOfPaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->removeImage('1');
+        $result = Asaas::paymentLink()->removeImage('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testSetMainImageOfPaymentLink()
     {
-        $result = $this->asaas
-            ->paymentLink()
-            ->setMainImage('1', '2');
+        $result = Asaas::paymentLink()->setMainImage('1', '2');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }

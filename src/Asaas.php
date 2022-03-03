@@ -20,78 +20,128 @@ use Nestdigital\Asaas\Api\Webhook;
 
 class Asaas
 {
+    private $account;
+    private $anticipation;
+    private $billPayment;
+    private $customer;
+    private $financialTransactions;
+    private $fiscalInformation;
+    private $installment;
+    private $invoice;
+    private $notification;
+    private $payment;
+    private $paymentDunning;
+    private $paymentLink;
+    private $serasa;
+    private $subscription;
+    private $webhook;
+
+    public function __construct(
+        Account $account,
+        Anticipation $anticipation,
+        BillPayment $billPayment,
+        Customer $customer,
+        FinancialTransactions $financialTransactions,
+        FiscalInformation $fiscalInformation,
+        Installment $installment,
+        Invoice $invoice,
+        Notification $notification,
+        Payment $payment,
+        PaymentDunning $paymentDunning,
+        PaymentLink $paymentLink,
+        Serasa $serasa,
+        Subscription $subscription,
+        Webhook $webhook
+    ) {
+        $this->account = $account;
+        $this->anticipation = $anticipation;
+        $this->billPayment = $billPayment;
+        $this->customer = $customer;
+        $this->financialTransactions = $financialTransactions;
+        $this->fiscalInformation = $fiscalInformation;
+        $this->installment = $installment;
+        $this->invoice = $invoice;
+        $this->notification = $notification;
+        $this->payment = $payment;
+        $this->paymentDunning = $paymentDunning;
+        $this->paymentLink = $paymentLink;
+        $this->serasa = $serasa;
+        $this->subscription = $subscription;
+        $this->webhook = $webhook;
+    }
+
     public function payment()
     {
-        return new Payment();
+        return $this->payment;
     }
 
     public function customer()
     {
-        return new Customer();
+        return $this->customer;
     }
 
     public function installment()
     {
-        return new Installment();
+        return $this->installment;
     }
 
     public function subscription()
     {
-        return new Subscription();
+        return $this->subscription;
     }
 
     public function paymentLink()
     {
-        return new PaymentLink();
+        return $this->paymentLink;
     }
 
     public function notification()
     {
-        return new Notification();
+        return $this->notification;
     }
 
     public function account()
     {
-        return new Account();
+        return $this->account;
     }
 
     public function anticipation()
     {
-        return new Anticipation();
+        return $this->anticipation;
     }
 
     public function billPayment()
     {
-        return new BillPayment();
+        return $this->billPayment;
     }
 
     public function financialTransactions()
     {
-        return new FinancialTransactions();
+        return $this->financialTransactions;
     }
 
     public function fiscalInformation()
     {
-        return new FiscalInformation();
+        return $this->fiscalInformation;
     }
 
     public function invoice()
     {
-        return new Invoice();
+        return $this->invoice;
     }
 
     public function paymentDunning()
     {
-        return new PaymentDunning();
+        return $this->paymentDunning;
     }
 
     public function serasa()
     {
-        return new Serasa();
+        return $this->serasa;
     }
 
     public function webhook()
     {
-        return new Webhook();
+        return $this->webhook;
     }
 }

@@ -1,27 +1,18 @@
 <?php
 
-namespace Nestdigital\Test;
+namespace Nestdigital\Test\Unit;
 
 use Exception;
-use Nestdigital\Asaas\Asaas;
-use PHPUnit\Framework\TestCase;
+use Nestdigital\Asaas\Facade\Asaas;
+use Nestdigital\Test\TestCase;
 
 class PaymentDunningTest extends TestCase
 {
-    private $asaas;
-
-    public function setUp(): void
-    {
-        $this->asaas = new Asaas();
-    }
-
     public function testCreatePaymentDunning()
     {
         $values = [];
 
-        $result = $this->asaas
-            ->paymentDunning()
-            ->create($values);
+        $result = Asaas::paymentDunning()->create($values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
@@ -30,9 +21,7 @@ class PaymentDunningTest extends TestCase
     {
         $values = [];
 
-        $result = $this->asaas
-            ->paymentDunning()
-            ->simulate($values);
+        $result = Asaas::paymentDunning()->simulate($values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
@@ -41,70 +30,54 @@ class PaymentDunningTest extends TestCase
     {
         $this->expectException(Exception::class); //api fault
 
-        $result = $this->asaas
-            ->paymentDunning()
-            ->find();
+        $result = Asaas::paymentDunning()->find();
     }
 
     public function testFindPaymentDunning()
     {
-        $result = $this->asaas
-            ->paymentDunning()
-            ->find('1');
+        $result = Asaas::paymentDunning()->find('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindPaymentDunningByStatus()
     {
-        $result = $this->asaas
-            ->paymentDunning()
-            ->findByStatus('PENDING');
+        $result = Asaas::paymentDunning()->findByStatus('PENDING');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindPaymentDunningByType()
     {
-        $result = $this->asaas
-            ->paymentDunning()
-            ->findByType('type');
+        $result = Asaas::paymentDunning()->findByType('type');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindPaymentDunningByPaymentId()
     {
-        $result = $this->asaas
-            ->paymentDunning()
-            ->findByPaymentId('1');
+        $result = Asaas::paymentDunning()->findByPaymentId('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testPaymentDunningEventHistory()
     {
-        $result = $this->asaas
-            ->paymentDunning()
-            ->eventHistory('1');
+        $result = Asaas::paymentDunning()->eventHistory('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testPaymentDunningReceivedPartialPayment()
     {
-        $result = $this->asaas
-            ->paymentDunning()
-            ->receivedPartialPayment('1');
+        $result = Asaas::paymentDunning()->receivedPartialPayment('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testPaymentsAvailableForDunning()
     {
-        $result = $this->asaas
-            ->paymentDunning()
-            ->paymentsAvailableForDunning('1');
+        $result = Asaas::paymentDunning()->paymentsAvailableForDunning('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
@@ -113,18 +86,14 @@ class PaymentDunningTest extends TestCase
     {
         $values = [];
 
-        $result = $this->asaas
-            ->paymentDunning()
-            ->resendDocuments('1', $values);
+        $result = Asaas::paymentDunning()->resendDocuments('1', $values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testCancelPaymentDunning()
     {
-        $result = $this->asaas
-            ->paymentDunning()
-            ->cancel('1');
+        $result = Asaas::paymentDunning()->cancel('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }

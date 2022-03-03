@@ -5,6 +5,24 @@ Nest Digital - Asaas
 
 Esse pacote existe devido à necessidade de integração de um projeto de terceiro com o Asaas. Não existe nenhum vínculo do desenvolvedor desta SDK com a empresa Asaas.
 
+**Notas da Versão 2**
+
+Adicionado facade a instanciação da classe principal. A forma de instanciação mudou de:
+
+```php
+use Nestdigital\Asaas\Asaas
+
+(new Asaas())->payment()->find()
+```
+
+Para:
+
+```php
+use Nestdigital\Asaas\Facade\Asaas
+
+(Asaas::payment()->find()
+```
+
 **SDK para uso em projetos Laravel da Nest Digital**
 
 Esse pacote permite chamadas na API da asaas de forma simplificada, encapsulando os processos de conexão e tratamento de dados. As função disponibilizadas estão de acordo com a nomenclatura da [API](https://asaasv3.docs.apiary.io/) disponibilizada pelo serviço.

@@ -1,27 +1,18 @@
 <?php
 
-namespace Nestdigital\Test;
+namespace Nestdigital\Test\Unit;
 
 use Exception;
-use Nestdigital\Asaas\Asaas;
-use PHPUnit\Framework\TestCase;
+use Nestdigital\Asaas\Facade\Asaas as FacadeAsaas;
+use Nestdigital\Test\TestCase;
 
 class BillPaymentTest extends TestCase
 {
-    private $asaas;
-
-    public function setUp(): void
-    {
-        $this->asaas = new Asaas();
-    }
-
     public function testCreateBillPayment()
     {
         $values = [];
 
-        $result = $this->asaas
-            ->billPayment()
-            ->create($values);
+        $result = FacadeAsaas::billPayment()->create($values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
@@ -30,9 +21,7 @@ class BillPaymentTest extends TestCase
     {
         $values = [];
 
-        $result = $this->asaas
-            ->billPayment()
-            ->simulate($values);
+        $result = FacadeAsaas::billPayment()->simulate($values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
@@ -41,25 +30,19 @@ class BillPaymentTest extends TestCase
     {
         $this->expectException(Exception::class); //api fault
 
-        $result = $this->asaas
-            ->billPayment()
-            ->find();
+        $result = FacadeAsaas::billPayment()->find();
     }
 
     public function testFindBillPaymentById()
     {
-        $result = $this->asaas
-            ->billPayment()
-            ->find('1');
+        $result = FacadeAsaas::billPayment()->find('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testCancelBillPayment()
     {
-        $result = $this->asaas
-            ->billPayment()
-            ->cancel('1');
+        $result = FacadeAsaas::billPayment()->cancel('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }

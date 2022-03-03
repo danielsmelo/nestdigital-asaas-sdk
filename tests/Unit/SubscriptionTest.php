@@ -1,63 +1,45 @@
 <?php
 
-namespace Nestdigital\Test;
+namespace Nestdigital\Test\Unit;
 
-use Exception;
-use Nestdigital\Asaas\Asaas;
-use PHPUnit\Framework\TestCase;
+use Nestdigital\Asaas\Facade\Asaas;
+use Nestdigital\Test\TestCase;
 
 class SubscriptionTest extends TestCase
 {
-    private $asaas;
-
-    public function setUp(): void
-    {
-        $this->asaas = new Asaas();
-    }
-
-    public function testCreateSubscription()
+   public function testCreateSubscription()
     {
         $values = [];
 
-        $result = $this->asaas
-            ->subscription()
-            ->create($values);
+        $result = Asaas::subscription()->create($values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindSubscriptionById()
     {
-        $result = $this->asaas
-            ->subscription()
-            ->find('1');
+        $result = Asaas::subscription()->find('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindAllSubscriptions()
     {
-        $result = $this->asaas
-            ->subscription()
-            ->find();
+        $result = Asaas::subscription()->find();
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindSubscriptionByCustomerId()
     {
-        $result = $this->asaas
-            ->subscription()
-            ->findByCustomerId('1');
+        $result = Asaas::subscription()->findByCustomerId('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindSubscriptionPayments()
     {
-        $result = $this->asaas
-            ->subscription()
-            ->payments('1');
+        $result = Asaas::subscription()->payments('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
@@ -66,27 +48,21 @@ class SubscriptionTest extends TestCase
     {
         $values = [];
 
-        $result = $this->asaas
-            ->subscription()
-            ->update('1', $values);
+        $result = Asaas::subscription()->update('1', $values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testRemoveSubscription()
     {
-        $result = $this->asaas
-            ->subscription()
-            ->remove('1');
+        $result = Asaas::subscription()->remove('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindSubscriptionInvoices()
     {
-        $result = $this->asaas
-            ->subscription()
-            ->invoices('1');
+        $result = Asaas::subscription()->invoices('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
@@ -95,27 +71,21 @@ class SubscriptionTest extends TestCase
     {
         $values = [];
 
-        $result = $this->asaas
-            ->subscription()
-            ->setInvoiceSettings('1', $values);
+        $result = Asaas::subscription()->setInvoiceSettings('1', $values);
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testFindSubscriptionInvoicesSettings()
     {
-        $result = $this->asaas
-            ->subscription()
-            ->invoiceSettings('1');
+        $result = Asaas::subscription()->invoiceSettings('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testRemoveSubscriptionInvoicesSettings()
     {
-        $result = $this->asaas
-            ->subscription()
-            ->removeInvoiceSettings('1');
+        $result = Asaas::subscription()->removeInvoiceSettings('1');
 
         $this->assertEquals($result->getStatusCode(), 200);
     }

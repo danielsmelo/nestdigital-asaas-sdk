@@ -4,26 +4,26 @@ namespace Nestdigital\Asaas\Api;
 
 use Exception;
 use GuzzleHttp\Client;
-use Nestdigital\Asaas\Config;
+use Illuminate\Contracts\Config\Repository;
 
 abstract class ApiAdapter
 {
     private $config;
-    private $httpAdapter;
+    private $client;
     protected $options;
 
-    public function __construct()
+    public function __construct(Repository $config, Client $client)
     {
-        $this->config = new Config();
-        $this->httpAdapter = new Client();
+        $this->config = $config;
+        $this->client = $client;
         $this->options['headers'] = $this->getHeader();
     }
 
     public function getHeader()
     {
-        return $headers = [
+        return [
             'Content-Type' => 'application/json',
-            'access_token' => $this->config->get('api_key'),
+            'access_token' => $this->config->get('asaas.api_key'),
         ];
     }
 
@@ -31,19 +31,19 @@ abstract class ApiAdapter
     {
         return $headers = [
             'Content-Type' => 'multipart/form-data',
-            'access_token' => $this->config->get('api_key'),
+            'access_token' => $this->config->get('asaas.api_key'),
         ];
     }
 
     public function getUrl(string $url)
     {
-        $baseUrl = $this->config->get('base_url');
+        $baseUrl = $this->config->get('asaas.base_url');
 
         if (substr($baseUrl, -1) != '/') {
             $baseUrl .= '/';
         }
 
-        $apiVersion = $this->config->get('api_version');
+        $apiVersion = $this->config->get('asaas.api_version');
 
         if (substr($apiVersion, -1) != '/') {
             $apiVersion .= '/';
@@ -57,7 +57,7 @@ abstract class ApiAdapter
         $fullUrl = $this->getUrl($url);
 
         try {
-            return $this->httpAdapter->request('POST', $fullUrl, $options);
+            return $this->client->request('POST', $fullUrl, $options);
         } catch (Exception $e) {
             if ($e->getCode() == 400) {
                 throw new Exception($this->getResponseErrorDescription($e));
@@ -72,7 +72,7 @@ abstract class ApiAdapter
         $fullUrl = $this->getUrl($url);
 
         try {
-            return $this->httpAdapter->request('PUT', $fullUrl, $options);
+            return $this->client->request('PUT', $fullUrl, $options);
         } catch (Exception $e) {
             if ($e->getCode() == 400) {
                 throw new Exception($this->getResponseErrorDescription($e));
@@ -87,7 +87,7 @@ abstract class ApiAdapter
         $fullUrl = $this->getUrl($url);
 
         try {
-            return $this->httpAdapter->request('GET', $fullUrl, $options);
+            return $this->client->request('GET', $fullUrl, $options);
         } catch (Exception $e) {
             if ($e->getCode() == 400) {
                 throw new Exception($this->getResponseErrorDescription($e));
@@ -102,7 +102,7 @@ abstract class ApiAdapter
         $fullUrl = $this->getUrl($url);
 
         try {
-            return $this->httpAdapter->request('DELETE', $fullUrl, $options);
+            return $this->client->request('DELETE', $fullUrl, $options);
         } catch (Exception $e) {
             if ($e->getCode() == 400) {
                 throw new Exception($this->getResponseErrorDescription($e));

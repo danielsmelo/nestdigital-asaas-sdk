@@ -49,7 +49,7 @@ abstract class ApiAdapter
             $apiVersion .= '/';
         }
 
-        return $baseUrl.$apiVersion.$url;
+        return $baseUrl . $apiVersion . $url;
     }
 
     public function post(string $url, array $options)
@@ -86,6 +86,8 @@ abstract class ApiAdapter
     {
         $fullUrl = $this->getUrl($url);
 
+        $this->unsetBody();
+
         try {
             return $this->client->request('GET', $fullUrl, $options);
         } catch (Exception $e) {
@@ -100,6 +102,8 @@ abstract class ApiAdapter
     public function delete(string $url, array $options)
     {
         $fullUrl = $this->getUrl($url);
+
+        $this->unsetBody();
 
         try {
             return $this->client->request('DELETE', $fullUrl, $options);
@@ -123,5 +127,12 @@ abstract class ApiAdapter
         }
 
         throw new Exception('Não existe resposta de erro do servidor');
+    }
+
+    public function unsetBody()
+    {
+        if (isset($this->options['body'])) {
+            unset($this->options['body']);
+        }
     }
 }

@@ -20,7 +20,7 @@ Para:
 ```php
 use Nestdigital\Asaas\Facade\Asaas
 
-(Asaas::payment()->find()
+Asaas::payment()->find()
 ```
 
 **SDK para uso em projetos Laravel da Nest Digital**

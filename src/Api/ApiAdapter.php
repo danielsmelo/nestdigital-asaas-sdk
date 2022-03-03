@@ -85,8 +85,7 @@ abstract class ApiAdapter
     public function get(string $url, array $options)
     {
         $fullUrl = $this->getUrl($url);
-
-        $this->unsetBody();
+        $options = $this->unsetBody($options);
 
         try {
             return $this->client->request('GET', $fullUrl, $options);
@@ -102,8 +101,7 @@ abstract class ApiAdapter
     public function delete(string $url, array $options)
     {
         $fullUrl = $this->getUrl($url);
-
-        $this->unsetBody();
+        $options = $this->unsetBody($options);
 
         try {
             return $this->client->request('DELETE', $fullUrl, $options);
@@ -129,10 +127,13 @@ abstract class ApiAdapter
         throw new Exception('Não existe resposta de erro do servidor');
     }
 
-    public function unsetBody()
+    public function unsetBody($options)
     {
-        if (isset($this->options['body'])) {
-            unset($this->options['body']);
+        if (isset($options['body'])) {
+            unset($options['body']);
+            return $options;
         }
+
+        return $options;
     }
 }

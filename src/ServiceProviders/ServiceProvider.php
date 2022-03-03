@@ -62,21 +62,65 @@ class ServiceProvider extends IlluminateServiceProvider
 
         $this->app->bind('asaas.functions', function ($app) {
             return [
-                'account' => new Account($app['config'], $app->make('asaas.client')),
-                'anticipation' => new Anticipation($app['config'], $app->make('asaas.client')),
-                'billPayment' => new BillPayment($app['config'], $app->make('asaas.client')),
-                'customer' => new Customer($app['config'], $app->make('asaas.client')),
-                'financialTransactions' => new FinancialTransactions($app['config'], $app->make('asaas.client')),
-                'fiscalInformation' => new FiscalInformation($app['config'], $app->make('asaas.client')),
-                'installment' => new Installment($app['config'], $app->make('asaas.client')),
-                'invoice' => new Invoice($app['config'], $app->make('asaas.client')),
-                'notification' => new Notification($app['config'], $app->make('asaas.client')),
-                'payment' => new Payment($app['config'], $app->make('asaas.client')),
-                'paymentDunning' => new PaymentDunning($app['config'], $app->make('asaas.client')),
-                'paymentLink' => new PaymentLink($app['config'], $app->make('asaas.client')),
-                'serasa' => new Serasa($app['config'], $app->make('asaas.client')),
-                'subscription' => new Subscription($app['config'], $app->make('asaas.client')),
-                'webhook' => new Webhook($app['config'], $app->make('asaas.client')),
+                'account' => new Account(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'anticipation' => new Anticipation(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'billPayment' => new BillPayment(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'customer' => new Customer(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'financialTransactions' => new FinancialTransactions(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'fiscalInformation' => new FiscalInformation(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'installment' => new Installment(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'invoice' => new Invoice(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'notification' => new Notification(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'payment' => new Payment(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'paymentDunning' => new PaymentDunning(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'paymentLink' => new PaymentLink(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'serasa' => new Serasa(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'subscription' => new Subscription(
+                    $app['config'],
+                    $app->make('asaas.client')),
+
+                'webhook' => new Webhook(
+                    $app['config'],
+                    $app->make('asaas.client')),
             ];
         });
 

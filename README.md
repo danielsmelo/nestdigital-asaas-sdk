@@ -76,7 +76,7 @@ Informe também a dependência na tag require.
 Para gerar o arquivo de configuração asaas.php automaticamente use o comando do artisan.
 
 ```bash
-php artisan php artisan vendor:publish
+php artisan vendor:publish
 ```
 
 Instancie a classe Asaas do pacote e chame cada função de forma encadeada. As funções estão definidas no final deste documento.
